@@ -1,0 +1,64 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('No')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-no" data-rule="required" class="form-control" name="row[no]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-name" data-rule="required" class="form-control" name="row[name]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('City')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class='control-relative'><input id="c-city" data-rule="required" class="form-control" data-toggle="city-picker" name="row[city]" type="text"></div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Address')}:</label>
+        <div class="col-xs-8 col-sm-6">
+            <input placeholder="如选择地址未出现可输入" id="c-address" data-rule="required" class="form-control" name="row[address]" type="text">
+        </div>
+        <div class="col-xs-4 col-sm-2">
+            <button type="button" class="btn btn-primary" data-toggle="addresspicker" data-input-id="c-address" data-lat-id="c-latitude" data-lng-id="c-longitude">选择地址</button>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('地理经纬')}:</label>
+        <div class="col-xs-6 col-sm-4">
+            <input readonly id="c-longitude" data-rule="required" class="form-control" name="row[longitude]" type="text" placeholder="请点击上方选择地址">
+        </div>
+        <div class="col-xs-6 col-sm-4">
+            <input readonly id="c-latitude" data-rule="required" class="form-control" name="row[latitude]" type="text" placeholder="请点击上方选择地址">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Status')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            
+            <div class="radio">
+            {foreach name="statusList" item="vo"}
+            <label for="row[status]-{$key}"><input id="row[status]-{$key}" name="row[status]" type="radio" value="{$key}" {in name="key" value="0"}checked{/in} /> {$vo}</label> 
+            {/foreach}
+            </div>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Status_msg')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-status_msg" class="form-control" name="row[status_msg]" type="text">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-primary btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

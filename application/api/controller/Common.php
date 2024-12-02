@@ -19,8 +19,12 @@ use think\Hook;
  */
 class Common extends Api
 {
-    protected $noNeedLogin = ['init','get_community','get_banner','get_modular','get_customer_service','reset_user_sms_upper_limit'];
+    protected $noNeedLogin = ['init','get_community','get_community_v2','get_banner','get_modular','get_information_type','get_customer_service','reset_user_sms_upper_limit'];
     protected $noNeedRight = '*';
+
+
+    protected $EARTH = 6378.137; //固定参数 地球半径
+    protected $PI = 3.1415926535898; //固定参数 圆周率
 
     /**
      * 加载初始化
@@ -132,6 +136,41 @@ class Common extends Api
     }
 
     /**
+     * 获取附近的小区V2
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function get_community_v2(){
+        $lng = $this->request->param('lng');
+        $lat = $this->request->param('lat');
+
+        $key = $this->request->param('key');
+        $limit = $this->request->param('limit', 20);
+
+        // 计算距离语句
+        $distanceSql = "ROUND((2 * $this->EARTH* ASIN(SQRT(POW(SIN($this->PI*(" . $lat . "-latitude)/360),2)+COS($this->PI*" . $lat . "/180)* COS(latitude * $this->PI/180)*POW(SIN($this->PI*(" . $lng . "-longitude)/360),2)))), 2)";
+
+        $community_list = Community::field("*, {$distanceSql} as distance")
+            ->where('status','in',["0","1"])
+            ->where('name','like','%'.$key.'%')
+            ->where("$distanceSql <= 30")
+            ->order('distance ASC')
+            ->paginate($limit);
+
+        // 如果登录了的，判断如果没有默认小区则设置当前小区为默认
+        if($this->auth->isLogin() && !empty($data_list)){
+            $thisUser = \app\common\model\User::where('id',$this->auth->id)->find();
+            if(empty($thisUser->community_id)){
+                $thisUser->community_id = $community_list->items()[0]['id'];
+                $thisUser->save();
+            }
+        }
+
+        $this->success('获取成功',$community_list);
+    }
+
+    /**
      * 获取附近的小区
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
@@ -142,34 +181,21 @@ class Common extends Api
         $lat = $this->request->param('lat');
 
         $key = $this->request->param('key');
-        $community_list = Community::where('status','in',["0","1"])->where('name','like','%'.$key.'%')->select();
+        $limit = $this->request->param('limit', 20);
+
+        // 计算距离语句
+        $distanceSql = "ROUND((2 * $this->EARTH* ASIN(SQRT(POW(SIN($this->PI*(" . $lat . "-latitude)/360),2)+COS($this->PI*" . $lat . "/180)* COS(latitude * $this->PI/180)*POW(SIN($this->PI*(" . $lng . "-longitude)/360),2)))), 2)";
+
+        $community_list = Community::field("*, {$distanceSql} as distance")
+            ->where('status','in',["0","1"])
+            ->where('name','like','%'.$key.'%')
+            ->where("$distanceSql <= 30")
+            ->order('distance ASC')
+            ->paginate($limit);
 
         $data_list = [];
         if(!empty($community_list)){
-            $community_list = collection($community_list)->toArray();
-            // 计算距离
-            foreach ($community_list as $item){
-                $item['distance'] = 0;
-                if($lng && $lat){
-                    $item['distance'] = get_distance($lng,$lat,$item['longitude'],$item['latitude']);
-                    $item['distance'] = round($item['distance']/1000,2);
-                    if($key){
-                        // 有搜索关键词则直接返回结果
-                        $data_list[] = $item;
-                        continue;
-                    }
-                    if($item['distance']<99999){
-                        if($item['status'] != 1){
-                            // 不正常的地址距离统一最大
-                            $item['distance'] = 6;
-                        }
-                        $data_list[] = $item;
-                    }
-                }
-            }
-            // 从近到远
-            $last_names = array_column($data_list,'distance');
-            array_multisort($last_names,SORT_ASC,$data_list);
+            $data_list = $community_list->items();
         }
 
         // 如果登录了的，判断如果没有默认小区则设置当前小区为默认
@@ -253,7 +279,7 @@ class Common extends Api
             // 给管理员发一条信息，请求审核
             \YangChengEasyComposer\Utils\Request::send_request('https://www.wangyunzhi.cn/api/wechat/send_approve_information_template',[
                 'title' => '建点申请：'.$param['name'],
-                'signKey' => '20010826511622',
+                'signKey' => '154fmj755s7fs78c478aa7',
             ]);
             $this->success('申请成功，请耐心等待审核',[
                 'tmplIds' => [Config::get('site.miniSubMsg_community_approve')]

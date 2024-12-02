@@ -188,7 +188,7 @@ class User extends Api
         try {
             $weChatMiniClass = new WehatMini(['appid'=>Config::get('site.miniapp_appid'),'secret'=>Config::get('site.miniapp_secret')]);
             $userData = $weChatMiniClass->dataDecryption($thisUser->mini_session_key, $encryptedData, $iv);
-            if(\app\common\model\User::where('username|mobile', $userData['phoneNumber'])){
+            if(\app\common\model\User::where('username|mobile', $userData['phoneNumber'])->value('id')){
                 throw new Exception('该手机号已绑定其他账号，请更换其他手机号！',400);
             }
             $thisUser->username = $userData['phoneNumber'];
@@ -228,8 +228,16 @@ class User extends Api
         }
         $ret = $this->auth->login($account, $password);
         if ($ret) {
-            $data = ['userinfo' => $this->auth->getUserinfo()];
-            $this->success(__('Logged in successful'), $data);
+            $thisUser = \app\common\model\User::where('id',$this->auth->id)->find();
+            $token = $this->auth->getToken();
+            $thisUser = $thisUser->toArray();
+            unset($thisUser['password']);
+            unset($thisUser['salt']);
+            $this->success('登录成功',[
+                'token' => $token,
+                'user_id' => $thisUser['id'],
+                'userInfo' => $thisUser
+            ]);
         } else {
             $this->error($this->auth->getError());
         }

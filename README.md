@@ -1,97 +1,122 @@
-FastAdmin是一款基于ThinkPHP+Bootstrap的极速后台开发框架。
+# 渝快同城 - 本地生活服务平台
+
+**"渝快同城"** 是一款专注于本地信息发布的微信小程序，旨在为用户提供一个便捷的平台，让他们在同城范围内发布和浏览各种信息，包括二手物品交易、房屋租售、招聘信息、社交活动、生活服务等。
+
+通过"渝快同城"，用户可以方便地在本地范围内找到所需物品、服务与机会，无论是买卖物品、租赁房屋还是寻找工作，平台都能帮助用户快速连接本地资源。
+
+## 主要功能与特点
+
+- **同城信息发布**  
+  用户可以轻松发布二手物品、房屋租售信息、招聘信息等内容。每个信息可以附带相关图片和详细描述，吸引潜在买家、租户或求职者。
 
 
-## 主要特性
-
-* 基于`Auth`验证的权限管理系统
-    * 支持无限级父子级权限继承，父级的管理员可任意增删改子级管理员及权限设置
-    * 支持单管理员多角色
-    * 支持管理子级数据或个人数据
-* 强大的一键生成功能
-    * 一键生成CRUD,包括控制器、模型、视图、JS、语言包、菜单、回收站等
-    * 一键压缩打包JS和CSS文件，一键CDN静态资源部署
-    * 一键生成控制器菜单和规则
-    * 一键生成API接口文档
-* 完善的前端功能组件开发
-    * 基于`AdminLTE`二次开发
-    * 基于`Bootstrap`开发，自适应手机、平板、PC
-    * 基于`RequireJS`进行JS模块管理，按需加载
-    * 基于`Less`进行样式开发
-* 强大的插件扩展功能，在线安装卸载升级插件
-* 通用的会员模块和API模块
-* 共用同一账号体系的Web端会员中心权限验证和API接口会员权限验证
-* 二级域名部署支持，同时域名支持绑定到应用插件
-* 多语言支持，服务端及客户端支持
-* 支持大文件分片上传、剪切板粘贴上传、拖拽上传，进度条显示，图片上传前压缩
-* 支持表格固定列、固定表头、跨页选择、Excel导出、模板渲染等功能
-* 强大的第三方应用模块支持([CMS](https://www.fastadmin.net/store/cms.html)、[博客](https://www.fastadmin.net/store/blog.html)、[知识付费问答](https://www.fastadmin.net/store/ask.html)、[在线投票系统](https://www.fastadmin.net/store/vote.html)、[B2C商城](https://www.fastadmin.net/store/shopro.html)、[B2B2C商城](https://www.fastadmin.net/store/wanlshop.html))
-* 支持CMS、博客、知识付费问答无缝整合[Xunsearch全文搜索](https://www.fastadmin.net/store/xunsearch.html)
-* 第三方小程序支持([CMS小程序](https://www.fastadmin.net/store/cms.html)、[预订小程序](https://www.fastadmin.net/store/ball.html)、[问答小程序](https://www.fastadmin.net/store/ask.html)、[点餐小程序](https://www.fastadmin.net/store/unidrink.html)、[B2C小程序](https://www.fastadmin.net/store/shopro.html)、[B2B2C小程序](https://www.fastadmin.net/store/wanlshop.html)、[博客小程序](https://www.fastadmin.net/store/blog.html))
-* 整合第三方短信接口(阿里云、腾讯云短信)
-* 无缝整合第三方云存储(七牛云、阿里云OSS、又拍云)功能，支持云储存分片上传
-* 第三方富文本编辑器支持(Summernote、Kindeditor、百度编辑器)
-* 第三方登录(QQ、微信、微博)整合
-* 第三方支付(微信、支付宝)无缝整合，微信支持PC端扫码支付
-* 丰富的插件应用市场
-
-## 安装使用
-
-https://doc.fastadmin.net
-
-## 在线演示
-
-https://demo.fastadmin.net
-
-用户名：admin
-
-密　码：123456
-
-提　示：演示站数据无法进行修改，请下载源码安装体验全部功能
-
-## 界面截图
-![控制台](https://images.gitee.com/uploads/images/2020/0929/202947_8db2d281_10933.gif "控制台")
-
-## 问题反馈
-
-在使用中有任何问题，请使用以下联系方式联系我们
-
-交流社区: https://ask.fastadmin.net
-
-QQ群: [636393962](https://jq.qq.com/?_wv=1027&k=487PNBb)(满) [708784003](https://jq.qq.com/?_wv=1027&k=5ObjtwM)(满) [964776039](https://jq.qq.com/?_wv=1027&k=59qjU2P)(3群) [749803490](https://jq.qq.com/?_wv=1027&k=5tczi88)(满) [767103006](https://jq.qq.com/?_wv=1027&k=5Z1U751)(满) [675115483](https://jq.qq.com/?_wv=1027&k=54I6mts)(6群)
-
-Github: https://github.com/karsonzhang/fastadmin
-
-Gitee: https://gitee.com/karson/fastadmin
-
-## 特别鸣谢
-
-感谢以下的项目,排名不分先后
-
-ThinkPHP：http://www.thinkphp.cn
-
-AdminLTE：https://adminlte.io
-
-Bootstrap：http://getbootstrap.com
-
-jQuery：http://jquery.com
-
-Bootstrap-table：https://github.com/wenzhixin/bootstrap-table
-
-Nice-validator: https://validator.niceue.com
-
-SelectPage: https://github.com/TerryZ/SelectPage
-
-Layer: https://layer.layui.com
-
-DropzoneJS: https://www.dropzonejs.com
+- **浏览和搜索功能**  
+  用户可以根据需求浏览其他人发布的信息，使用强大的搜索功能快速找到所需的物品或服务。
 
 
-## 版权信息
+- **交流与评论**  
+  用户可以在信息页面下与发布者互动，进行评论或询问更多详情，促进双方的沟通。
 
-FastAdmin遵循Apache2开源协议发布，并提供免费使用。
 
-本项目包含的第三方源码和二进制文件之版权信息另行标注。
+- **用户评价与信誉系统（未上线）**  
+  为了增加交易的安全性和信任度，平台提供用户评价系统，帮助用户了解彼此的信誉，确保交易的顺利进行。
 
-版权所有Copyright © 2017-2022 by FastAdmin (https://www.fastadmin.net)
 
-All rights reserved。
+- **个人中心与消息通知**  
+  用户可以在个人中心管理发布的信息，并查看收到的消息与通知，实时了解交易进展与沟通状态。
+
+
+
+## 相关提醒
+
+> **商用提示**：本系统已获得《中华人民共和国软件著作权》版号/登记号：2023SR1503234，本系统开源仅用于个人教育学习使用，禁止进行任何的商业使用（除获得商业授权），如您需要将此项目用于包含且不限于任何形式的运营、二次开发发布、去版权信息、外包系统研发等情况，您需要前往底部的联系方式一栏与我们取得联系，并付费获取商业授权许可，在获得商业授权许可后，您可根据商业授权许可证内描述的范围进行使用本代码在商业途径，我司具有完整的风控监测体系，如发现未获得商业授权许可进行了商业途径使用，我司或将通过法律途径维护权益，请知晓！
+
+> **敏感注意**：建议您在使用本系统时，需要注意一些敏感性问题，为了确保用户安全并遵守相关法规，平台会对涉及政治话题、敏感人物或不适当内容的讨论进行提醒，并启动合规对话。
+
+---
+
+## 安装方式（前端）
+
+1. 下载本项目文件并导入到 HBuilderX 即可食用。
+2. 运行到微信小程序（模拟器）。
+
+## 部署方式（后端）
+
+1. 首先确保您已获得了小程序开发者权限（在微信公众平台进行注册）。
+2. 将后端代码目录的.env文件内数据库连接配置修改为自己的。
+3. 将代码上传至服务器网站目录
+4. 将网站伪静态设置为thinkphp，如下：
+
+**Nginx代码：**
+````
+location / {
+	if (!-e $request_filename){
+		rewrite  ^(.*)$  /index.php?s=$1  last;   break;
+	}
+}
+````
+5. 访问后台地址：**你的域名/yktc_admin.php**
+6. 输入管理员账号：admin  密码：511622
+7. 进入后台管理后，点击侧边栏目“常规管理”-“系统配置”，打开“微信小程序配置”选项卡，配置好你的微信小程序APPID和微信小程序AppSecret
+8. 点开“阿里云对象存储”选项卡，配置好你的阿里云对象存储OSS的账号信息
+9. 基础配置-文件根域名 配置你当前的网址
+
+**后台按需配置：**
+
+1. 配置百度云AI（用于检测违规词语等）需要自行前往百度AI开放平台注册账号
+2. 阿里云短信（用于模板消息无法送达的时候进行sms短信推送）
+3. 小程序订阅消息模板（用于发送一些审核类提醒）
+4. 代码目录/application/api/controller/Common.php文件内280行附近存在一个请求我司平台公众号通知的API，按需使用，可删除代码
+5. 企业微信 已经废弃
+6. 微信支付（暂未使用，预留接口）
+
+
+## 使用说明
+
+- **关于依赖**：依赖已集成，无需重新安装。
+- **关于后端**：内置线上后端地址。如果需要使用自己的后端，请访问以下地址进行克隆：
+    - 后端 API（FastAdmin框架）：[GitHub - 后端](https://github.com/yc20010826/smart-community-platform-api/tree/master)
+    - 前端源码（UniApp）：[GitHub - 前端](https://github.com/yc20010826/smart-community-platform-mini/tree/master)
+- **关于后续更新**：项目目前更新较慢，后期可能会推出汽修平台并开源。如果有任何需求，欢迎联系。
+
+## 兼容性说明
+
+目前项目主要兼容微信小程序平台，其他平台可能需要做适当调整。欢迎测试并自行修正细节。
+
+---
+
+## 开发者
+
+- **杨成（江淮川）**
+
+## 贡献者
+
+- **逆流的鱼**
+- **小柒**
+- **念**
+- **Yuki**
+
+---
+
+## 问题反馈（联系方式）
+
+如有任何问题，欢迎提交Issues反馈或按照下方联系方式与我们取得联系。
+
+### 微信：Y17380287639
+
+### QQ: 1991361342
+
+### Telegram: @phpyang
+
+---
+
+## 版权说明
+
+本项目遵循 **Apache 2.0 开源协议**。如需在本项目的基础上衍生其他项目，请保留原项目版权信息。如涉及商用，请提前联系授权，否则可能构成侵权。
+
+项目中所涉及的第三方源码及二进制文件版权信息另行标注。
+
+版权所有 © 2017-2022 杨成（YangCheng）  
+依托重庆网云智网络科技有限公司（[www.wangyunzhi.cn](http://www.wangyunzhi.cn)）
+
+All rights reserved.
